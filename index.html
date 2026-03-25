@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viajes Con Steefan - Your Journey Begins Here</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E91E63;
+            --primary-purple: #9C27B0;
+            --deep-purple: #7B1FA2;
+            --gradient: linear-gradient(135deg, #E91E63 0%, #C2185B 50%, #9C27B0 100%);
+            --gradient-soft: linear-gradient(135deg, rgba(233, 30, 99, 0.8) 0%, rgba(156, 39, 176, 0.6) 100%);
+            --light-bg: #FCE4EC;
+            --text-dark: #2C1810;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            color: var(--text-dark);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--deep-purple);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-pink);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--deep-purple);
+        }
+
+        /* Hero Section - SIN OVERLAY FUERTE */
+        .hero {
+            margin-top: 90px;
+            background: url('https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/69d473206-559a-4a9b-a6af-61954424c8e57617.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Overlay muy sutil solo para mejorar legibilidad del texto */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.25); /* Solo 25% oscuro, nada de fucsia */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+            font-weight: 300;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3.5rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            border-color: white;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 2;
+        }
+
+        /* Tours Section */
+        .tours {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .tour-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+            transition: all 0.4s;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 70px rgba(233, 30, 99, 0.25);
+            border-color: var(--primary-pink);
+        }
+
+        .tour-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .tour-card:hover .tour-image {
+            transform: scale(1.15);
+        }
+
+        .image-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tour-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .tour-content {
+            padding: 2.5rem;
+        }
+
+        .tour-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .tour-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .tour-features {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #777;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .feature i {
+            color: var(--primary-pink);
+            font-size: 1.1rem;
+        }
+
+        .tour-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .book-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .book-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(233, 30, 99, 0.4);
+        }
+
+        /* Video Section */
+        .videos {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .video-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 350px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-soft);
+            opacity: 0;
+            transition: opacity 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 2.5rem;
+            border-radius: 20px;
+            background: white;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.2);
+        }
+
+        .feature-box i {
+            font-size: 3.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-box h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .feature-box p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+            -webkit-text-fill-color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(10px);
+        }
+
+        .contact-item i {
+            font-size: 1.8rem;
+            color: #FFD700;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            color: #333;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-pink);
+            transform: translateY(-5px);
+            background: rgba(233, 30, 99, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.3rem;
+            }
+
+            .tours-grid,
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/tu-logo.png" alt="Viajes Con Steefan Logo">
+                <span class="logo-text">VIAJES CON STEEFAN</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#tours">Tours</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>VIAJES CON STEEFAN</h1>
+            <p>Your Journey Begins Here</p>
+            <a href="#tours" class="cta-button">Explora Nuestros Tours</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Descubre la Magia de Cusco</h2>
+            <p>En Viajes Con Steefan te ofrecemos experiencias únicas e inolvidables en los destinos más espectaculares del Perú. Desde la majestuosa Machu Picchu hasta las coloridas montañas de los Andes, vivimos haciendo realidad tus sueños de aventura.</p>
+        </div>
+    </section>
+
+    <!-- Tours Section -->
+    <section class="tours" id="tours">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Nuestros Paquetes Turísticos</h2>
+            
+            <div class="tours-grid">
+                <!-- Machu Picchu Full Day -->
+                <div class="tour-card fade-in">
+                    <div class="image-container">
+                        <span class="tour-badge">Más Popular</span>
+                        <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/69d473206-559a-4a9b-a6af-61954424c8e57617.png" alt="Machu Picchu" class="tour-image">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Machu Picchu Full Day</h3>
+                        <p>Vive la experiencia de conocer una de las 7 maravillas del mundo moderno. Explora la ciudadela inca más famosa del planeta con nuestros guías expertos.</p>
+                        <div class="tour-features">
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <span>1 Día</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span>Entradas Incluidas</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-utensils"></i>
+                                <span>Almuerzo</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">Desde $275</div>
+                        <button class="book-button">Reservar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- City Tour Cusco -->
+                <div class="tour-card fade-in">
+                    <div class="image-container">
+                        <span class="tour-badge">Imperdible</span>
+                        <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/19d473206-559a-4a9b-a6af-61954424c8e58886.png" alt="City Tour Cusco" class="tour-image">
+                    </div>
+                    <div class="tour-content">
+                        <h3>City Tour Cusco</h3>
+                        <p>Recorre la ciudad imperial del Cusco. Visita la Catedral, Qorikancha y las impresionantes ruinas de Sacsayhuamán, Q'enqo, Puka Pukara y Tambomachay.</p>
+                        <div class="tour-features">
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <span>Medio Día</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-bus"></i>
+                                <span>Transporte</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-user-tie"></i>
+                                <span>Guía Profesional</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">Desde $35</div>
+                        <button class="book-button">Reservar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Montaña de 7 Colores -->
+                <div class="tour-card fade-in">
+                    <div class="image-container">
+                        <span class="tour-badge">Aventura</span>
+                        <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/69d473206-559a-4a9b-a6af-61954424c8e56433.png" alt="Montaña 7 Colores" class="tour-image">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Montaña de 7 Colores</h3>
+                        <p>Descubre la mágica Vinicunca, la montaña multicolor que te dejará sin aliento. Una experiencia única a 5,200 msnm en los Andes peruanos.</p>
+                        <div class="tour-features">
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <span>1 Día</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-hiking"></i>
+                                <span>Trekking</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-camera"></i>
+                                <span>Fotos Increíbles</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">Desde $45</div>
+                        <button class="book-button">Reservar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Laguna Humantay -->
+                <div class="tour-card fade-in">
+                    <div class="image-container">
+                        <span class="tour-badge">Naturaleza</span>
+                        <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/49d473206-559a-4a9b-a6af-61954424c8e51355.png" alt="Laguna Humantay" class="tour-image">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Laguna Humantay</h3>
+                        <p>Contempla las aguas turquesas de la laguna Humantay rodeada de imponentes nevados. Un paisaje de ensueño en el corazón de los Andes.</p>
+                        <div class="tour-features">
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <span>1 Día</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-mountain"></i>
+                                <span>4,200 msnm</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-breakfast"></i>
+                                <span>Desayuno + Almuerzo</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">Desde $50</div>
+                        <button class="book-button">Reservar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Valle Sagrado - Ollantaytambo -->
+                <div class="tour-card fade-in">
+                    <div class="image-container">
+                        <span class="tour-badge">Cultura Inca</span>
+                        <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/37c16c9cd-bf62-4a5b-b667-70ee5c92c2656865.png" alt="Ollantaytambo" class="tour-image">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Valle Sagrado - Ollantaytambo</h3>
+                        <p>Explora la impresionante fortaleza de Ollantaytambo, un ejemplo perfecto de la arquitectura inca. Conoce el último pueblo inca viviente y sus misteriosos templos.</p>
+                        <div class="tour-features">
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <span>1 Día</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-landmark"></i>
+                                <span>Fortaleza Inca</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-train"></i>
+                                <span>Pueblo Inca</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">Desde $40</div>
+                        <button class="book-button">Reservar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Valle Sur - Tipon -->
+                <div class="tour-card fade-in">
+                    <div class="image-container">
+                        <span class="tour-badge">Arqueología</span>
+                        <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/27c16c9cd-bf62-4a5b-b667-70ee5c92c2657797.png" alt="Tipon" class="tour-image">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Valle Sur - Tipón</h3>
+                        <p>Descubre Tipón, el templo del agua inca con sus impresionantes sistemas hidráulicos que aún funcionan. Un sitio arqueológico único en el mundo.</p>
+                        <div class="tour-features">
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <span>1 Día</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-tint"></i>
+                                <span>Sistema Hidráulico</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-landmark"></i>
+                                <span>Andenes Incas</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">Desde $25</div>
+                        <button class="book-button">Reservar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Cuatrimotos ATV -->
+                <div class="tour-card fade-in">
+                    <div class="image-container">
+                        <span class="tour-badge" style="background: linear-gradient(135deg, #FF5722 0%, #E91E63 100%);">Aventura Extrema</span>
+                        <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/57c16c9cd-bf62-4a5b-b667-70ee5c92c2659702.png" alt="Cuatrimotos ATV" class="tour-image">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Cuatrimotos ATV - Valle Sagrado</h3>
+                        <p>Vive la adrenalina de recorrer los paisajes más espectaculares del Valle Sagrado en cuatrimotos. Visita Maras, Moray y pueblos andinos con vistas panorámicas increíbles.</p>
+                        <div class="tour-features">
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <span>2-4 Horas</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-motorcycle"></i>
+                                <span>ATV Incluido</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-helmet-safety"></i>
+                                <span>Equipo Completo</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">Desde $60</div>
+                        <button class="book-button">Reservar Ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="videos" id="videos">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Descubre Nuestros Destinos en Video</h2>
+            <div class="videos-grid">
+                <div class="video-wrapper fade-in">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/8xKjXPKwNKE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">Machu Picchu - Maravilla del Mundo</div>
+                </div>
+                <div class="video-wrapper fade-in">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/9BwH8xGKvLc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">Laguna Humantay - Paraíso Andino</div>
+                </div>
+                <div class="video-wrapper fade-in">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/4xYzP8KqPqM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">Montaña de 7 Colores - Vinicunca</div>
+                </div>
+                <div class="video-wrapper fade-in">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/2xL5fKjXwPw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">Valle Sagrado de los Incas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="galeria">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Galería de Imágenes</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/49d473206-559a-4a9b-a6af-61954424c8e57192.png" alt="Machu Picchu Amanecer">
+                    <div class="gallery-overlay">Machu Picchu</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/39d473206-559a-4a9b-a6af-61954424c8e54335.png" alt="Machu Picchu Sunset">
+                    <div class="gallery-overlay">Atardecer Inca</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/37c16c9cd-bf62-4a5b-b667-70ee5c92c2656865.png" alt="Ollantaytambo">
+                    <div class="gallery-overlay">Ollantaytambo</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/19d473206-559a-4a9b-a6af-61954424c8e58886.png" alt="Cusco City">
+                    <div class="gallery-overlay">Cusco Imperial</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/39d473206-559a-4a9b-a6af-61954424c8e58502.png" alt="Plaza de Armas">
+                    <div class="gallery-overlay">Plaza de Armas</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/27c16c9cd-bf62-4a5b-b667-70ee5c92c2657797.png" alt="Tipon">
+                    <div class="gallery-overlay">Tipón</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/49d473206-559a-4a9b-a6af-61954424c8e51355.png" alt="Humantay">
+                    <div class="gallery-overlay">Laguna Humantay</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/59d473206-559a-4a9b-a6af-61954424c8e58055.png" alt="Humantay Nevados">
+                    <div class="gallery-overlay">Nevados Andinos</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/39d473206-559a-4a9b-a6af-61954424c8e54739.png" alt="7 Colores">
+                    <div class="gallery-overlay">Vinicunca</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/29d473206-559a-4a9b-a6af-61954424c8e57370.png" alt="Rainbow Mountain">
+                    <div class="gallery-overlay">Montaña Arcoiris</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/57c16c9cd-bf62-4a5b-b667-70ee5c92c2659702.png" alt="ATV">
+                    <div class="gallery-overlay">Aventura ATV</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://image.qwenlm.ai/public_source/3eea2e63-99ca-482f-af15-ec9ee53725fc/07c16c9cd-bf62-4a5b-b667-70ee5c92c2654324.png" alt="Cuatrimotos">
+                    <div class="gallery-overlay">Cuatrimotos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">¿Por Qué Elegirnos?</h2>
+            <div class="features-grid">
+                <div class="feature-box fade-in">
+                    <i class="fas fa-award"></i>
+                    <h3>Experiencia</h3>
+                    <p>Años de experiencia brindando los mejores servicios turísticos en Cusco y alrededores.</p>
+                </div>
+                <div class="feature-box fade-in">
+                    <i class="fas fa-users"></i>
+                    <h3>Guías Expertos</h3>
+                    <p>Guías profesionales bilingües con amplio conocimiento de la cultura inca.</p>
+                </div>
+                <div class="feature-box fade-in">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Seguridad</h3>
+                    <p>Tu seguridad es nuestra prioridad. Contamos con todos los seguros necesarios.</p>
+                </div>
+                <div class="feature-box fade-in">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Mejor Precio</h3>
+                    <p>Ofrecemos los mejores precios del mercado sin comprometer la calidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Contáctanos</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>¡Reserva tu aventura hoy!</h3>
+                    <p style="margin-bottom: 2rem; font-size: 1.2rem; line-height: 1.8;">Estamos listos para hacer realidad tu sueño de conocer el Perú. Escríbenos y te responderemos a la brevedad.</p>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">WhatsApp / Celular</div>
+                            <div style="font-weight: 700;">+51 979 051 320</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Correo Electrónico</div>
+                            <div style="font-weight: 700;">viajes.by.stefan@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Cusco, Perú</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Atención 24/7</span>
+                    </div>
+
+                    <div class="social-links" style="margin-top: 2.5rem;">
+                        <a href="https://wa.me/51979051320" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:viajes.by.stefan@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico</label>
+                            <input type="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono / WhatsApp</label>
+                            <input type="tel" placeholder="+51 999 888 777">
+                        </div>
+                        <div class="form-group">
+                            <label>Tour de Interés</label>
+                            <input type="text" placeholder="¿Qué tour te interesa?">
+                        </div>
+                        <div class="form-group">
+                            <label>Mensaje</label>
+                            <textarea rows="4" placeholder="Cuéntanos más sobre tu viaje..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://wa.me/51979051320" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:viajes.by.stefan@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; font-weight: 700;">VIAJES CON STEEFAN</p>
+        <p style="font-style: italic; margin-bottom: 1rem; opacity: 0.9;">Your Journey Begins Here</p>
+        <p>&copy; 2026 Todos los derechos reservados.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            <i class="fas fa-phone"></i> +51 979 051 320 | 
+            <i class="fas fa-envelope"></i> viajes.by.stefan@gmail.com
+        </p>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.background = 'white';
+            }
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Te contactaremos pronto al WhatsApp +51 979 051 320 o al correo viajes.by.stefan@gmail.com');
+            e.target.reset();
+        });
+
+        // Book buttons
+        document.querySelectorAll('.book-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tourCard = button.closest('.tour-card');
+                const tourName = tourCard.querySelector('h3').textContent;
+                document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    alert(`¡Excelente elección! Has seleccionado: ${tourName}.\n\nContáctanos:\n📱 WhatsApp: +51 979 051 320\n📧 Email: viajes.by.stefan@gmail.com\n\nTe responderemos a la brevedad.`);
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
